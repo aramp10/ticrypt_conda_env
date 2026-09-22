@@ -36,7 +36,7 @@ conda create -y -p $STAGE/myenv \
     --override-channels -c conda-forge --no-default-packages \
     python=3.12 numpy pandas scipy
 
-du -sh $STAGE/myenv
+du -sh $STAGE/myenv            # the prefix alone -- not `du -sh $STAGE/*`
 conda list -p $STAGE/myenv | wc -l
 
 $STAGE/packer/bin/conda-pack -p $STAGE/myenv -o $STAGE/myenv.tar.gz --n-threads 4
@@ -53,9 +53,20 @@ way to change it later.
 **Measure before you pack.** Free space on tiCrypt is the binding constraint, not
 bandwidth. Check what you have with `df -h $HOME` before you build, and budget for peak
 usage during unpack being the tarball *plus* the unpacked environment at the same time.
-For reference, `python=3.12 numpy` alone is 36 packages / 338 MB on SCC, packing to a
-118 MB tarball and 351 MB unpacked on tiCrypt. A five-package scientific stack lands
-substantially higher.
+Two measured points for reference:
+
+| environment | packages | on SCC | tarball | unpacked |
+|---|---|---|---|---|
+| `python=3.12 numpy` | 36 | 338 MB | 118 MB | 351 MB |
+| `+ pandas scipy scikit-learn statsmodels` | 52 | 607 MB | 197 MB | 625 MB |
+
+A scientific stack grows more slowly than you'd expect — those four added only 16
+packages, because they share OpenBLAS and libgomp rather than each bringing their own.
+
+⚠️ **Measure the prefix on its own.** `du -sh $STAGE/*` under-reports an environment by
+several-fold: conda hardlinks files from the package cache, and a single `du` invocation
+counts each inode once, so walking `pkgs/` first attributes the shared content there. Use
+`du -sh $STAGE/myenv`.
 
 Note the package cache (`$STAGE/pkgs`) grows to several times the size of the
 environment. It never crosses the gap; keep it while you're still building, then clear

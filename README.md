@@ -163,57 +163,17 @@ du -sh ~/conda/envs/myenv
 `which python` should point inside `~/conda/envs/myenv`. The LAPACK line is the
 important one — it's where a broken OpenBLAS relocation actually shows up.
 
-## A worked example
+## Examples
 
-The numbers quoted above come from **PoPS**, a real five-package scientific stack taken
-through all four steps in a single day. Built with:
+Two complete runs of the steps above, with every command and its real output:
 
-```bash
-conda create -y -p $STAGE/pops \
-    --override-channels -c conda-forge --no-default-packages \
-    python=3.12 numpy pandas scipy scikit-learn statsmodels
-```
-
-Six requested packages pulled in 52 total, resolving to:
-
-| package | version |
-|---|---|
-| python | 3.12.14 |
-| numpy | 2.5.3 |
-| pandas | 3.0.6 |
-| scipy | 1.18.1 |
-| scikit-learn | 1.9.1 |
-| statsmodels | 0.15.0 |
-
-What it measured:
-
-| | |
-|---|---|
-| Environment on SCC | 607 MB (prefix) / 625 MB (extracted) |
-| Tarball | 197 MB |
-| Unpacked on tiCrypt | 625 MB — identical to the SCC extraction |
-| Peak during unpack | ~822 MB (tarball + unpacked together) |
-| Max glibc symbol required | GLIBC_2.17, across 390 shared objects |
-
-Every package imported and exercised its compiled paths on tiCrypt — BLAS, LAPACK, a
-scikit-learn fit and a statsmodels OLS — at versions identical to the ones built on SCC.
-conda-pack produced no warnings, which is what you want: it warns on pip-installed
-packages and refuses editable installs.
-
-[`pops.explicit.txt`](pops.explicit.txt) is that environment's pinned spec — 52 packages
-with build strings and conda-forge URLs. To rebuild it exactly rather than resolving
-today's newest:
-
-```bash
-conda create -y -p $STAGE/pops --file pops.explicit.txt
-```
-
-Two things this example is useful for beyond the numbers. **The size grows more slowly
-than the package count suggests** — four packages on top of numpy added only 16
-dependencies, because they share OpenBLAS and libgomp. And **thread limits are worth
-checking**: on a 2-core VM, an environment throttled to one thread ran a 2000×2000
-matmul in 0.36 s versus 0.24 s unthrottled. The cost is capped by core count, so check
-`nproc` before worrying about it.
+- **[examples/demo.md](examples/demo.md)** — `python=3.12 numpy`. 36 packages, 338 MB,
+  118 MB packed. The smallest environment worth transferring; use it to prove the
+  pipeline works before committing to a large one.
+- **[examples/pops.md](examples/pops.md)** — `+ pandas scipy scikit-learn statsmodels`.
+  52 packages, 607 MB, 197 MB packed. A real scientific stack, built and verified on
+  tiCrypt end to end, with its pinned spec at
+  [examples/pops.explicit.txt](examples/pops.explicit.txt).
 
 ## Options
 

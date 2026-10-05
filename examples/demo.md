@@ -6,16 +6,15 @@ A small environment for trying out the steps before building a larger one.
 
 ```bash
 module load miniconda/25.3.1
-export CONDA_PKGS_DIRS=/projectnb/<your_project>/conda/pkgs
 
-conda create -y -p /projectnb/<your_project>/conda/packer -c conda-forge conda-pack
+conda create -y -n packer -c conda-forge conda-pack
 
-conda create -y -p /projectnb/<your_project>/conda/demo \
+conda create -y -n demo \
     --override-channels -c conda-forge --no-default-packages \
     python=3.12 numpy
 
-/projectnb/<your_project>/conda/packer/bin/conda-pack \
-    -p /projectnb/<your_project>/conda/demo -o demo.tar.gz
+conda activate packer
+conda-pack -n demo -o demo.tar.gz
 ```
 
 ## Copy to tiCrypt

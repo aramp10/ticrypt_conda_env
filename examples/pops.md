@@ -6,23 +6,22 @@
 
 ```bash
 module load miniconda/25.3.1
-export CONDA_PKGS_DIRS=/projectnb/<your_project>/conda/pkgs
 
-conda create -y -p /projectnb/<your_project>/conda/packer -c conda-forge conda-pack
+conda create -y -n packer -c conda-forge conda-pack
 
-conda create -y -p /projectnb/<your_project>/conda/pops \
+conda create -y -n pops \
     --override-channels -c conda-forge --no-default-packages \
     python=3.12 numpy pandas scipy scikit-learn statsmodels
 
-/projectnb/<your_project>/conda/packer/bin/conda-pack \
-    -p /projectnb/<your_project>/conda/pops -o pops.tar.gz
+conda activate packer
+conda-pack -n pops -o pops.tar.gz
 ```
 
 To build exactly the versions tested here, use the pinned list
 [pops.explicit.txt](pops.explicit.txt) instead of the package list:
 
 ```bash
-conda create -y -p /projectnb/<your_project>/conda/pops --file pops.explicit.txt
+conda create -y -n pops --file pops.explicit.txt
 ```
 
 ## Copy to tiCrypt

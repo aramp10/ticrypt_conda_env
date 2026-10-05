@@ -10,23 +10,24 @@ the steps.
 
 ## Step 1 — On BU SCC, build and pack the environment
 
-Replace `<your_project>` with your SCC project directory, and the package list with yours.
+Replace the package list with yours. If you haven't used conda on SCC before, run
+`setup_scc_condarc.sh` once after `module load` so your environments are stored in
+project space.
 
 ```bash
 module load miniconda/25.3.1
-export CONDA_PKGS_DIRS=/projectnb/<your_project>/conda/pkgs
 
 # one-time: install the packing tool
-conda create -y -p /projectnb/<your_project>/conda/packer -c conda-forge conda-pack
+conda create -y -n packer -c conda-forge conda-pack
 
 # build your environment
-conda create -y -p /projectnb/<your_project>/conda/myenv \
+conda create -y -n myenv \
     --override-channels -c conda-forge --no-default-packages \
     python=3.12 numpy pandas scipy
 
 # pack it into myenv.tar.gz
-/projectnb/<your_project>/conda/packer/bin/conda-pack \
-    -p /projectnb/<your_project>/conda/myenv -o myenv.tar.gz
+conda activate packer
+conda-pack -n myenv -o myenv.tar.gz
 ```
 
 ## Step 2 — Copy the file into tiCrypt

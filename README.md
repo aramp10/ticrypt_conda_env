@@ -34,6 +34,8 @@ conda-pack -n myenv -o myenv.tar.gz
 
 Follow BU's
 [tiCrypt file transfer guide](https://github.com/katgit/BU-tiCrypt/tree/main/doc/tiCrypt_FileTransfer_Guide).
+For an overview of all upload methods, see tiCrypt's
+[Data ingress](https://ticrypt.com/articles/data-ingress) article.
 
 ## Step 3 — On tiCrypt, unpack the environment
 

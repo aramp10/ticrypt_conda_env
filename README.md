@@ -18,12 +18,10 @@ project space.
 module load miniconda/25.3.1
 
 # one-time: install the packing tool
-conda create -y -n packer -c conda-forge conda-pack
+conda create -y -n packer conda-pack
 
 # build your environment
-conda create -y -n myenv \
-    --override-channels -c conda-forge --no-default-packages \
-    python=3.12 numpy pandas scipy
+conda create -y -n myenv python=3.12 numpy pandas scipy
 
 # pack it into myenv.tar.gz
 conda activate packer

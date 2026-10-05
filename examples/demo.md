@@ -7,11 +7,9 @@ A small environment for trying out the steps before building a larger one.
 ```bash
 module load miniconda/25.3.1
 
-conda create -y -n packer -c conda-forge conda-pack
+conda create -y -n packer conda-pack
 
-conda create -y -n demo \
-    --override-channels -c conda-forge --no-default-packages \
-    python=3.12 numpy
+conda create -y -n demo python=3.12 numpy
 
 conda activate packer
 conda-pack -n demo -o demo.tar.gz

@@ -7,11 +7,9 @@
 ```bash
 module load miniconda/25.3.1
 
-conda create -y -n packer -c conda-forge conda-pack
+conda create -y -n packer conda-pack
 
-conda create -y -n pops \
-    --override-channels -c conda-forge --no-default-packages \
-    python=3.12 numpy pandas scipy scikit-learn statsmodels
+conda create -y -n pops python=3.12 numpy pandas scipy scikit-learn statsmodels
 
 conda activate packer
 conda-pack -n pops -o pops.tar.gz

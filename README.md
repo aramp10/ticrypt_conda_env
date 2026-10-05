@@ -52,6 +52,8 @@ In later sessions, activate with:
 source ~/conda/envs/myenv/bin/activate
 ```
 
+To leave the environment: `source ~/conda/envs/myenv/bin/deactivate`
+
 ## Step 4 — Check that it works
 
 ```bash

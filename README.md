@@ -58,6 +58,20 @@ source ~/conda/envs/myenv/bin/activate
 python -c "import numpy, pandas, scipy; print('ok')"
 ```
 
+## Step 5 — Clean up (optional)
+
+On tiCrypt, delete the archive once the environment works:
+
+```bash
+rm ~/Downloads/myenv.tar.gz
+```
+
+On SCC, you can delete the environment after packing it (keep `packer` for next time):
+
+```bash
+conda env remove -n myenv
+```
+
 ## Examples
 
 - [examples/demo.md](examples/demo.md) — `python=3.12 numpy`

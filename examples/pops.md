@@ -5,6 +5,10 @@ scripts fail on pandas 3), from the pinned list [pops.explicit.txt](pops.explici
 
 ## On BU SCC
 
+First time using conda on SCC? Set up your `.condarc` first, following
+[Miniconda Modules](https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/)
+(`setup_scc_condarc.sh`).
+
 ```bash
 module load miniconda/25.3.1
 

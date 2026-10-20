@@ -21,6 +21,7 @@ conda-pack -n pops -o pops.tar.gz
 ## Copy to tiCrypt
 
 See tiCrypt's [Data Ingress and Egress](https://ticrypt.com/articles/data-ingress) guide.
+We recommend [Direct SFTP to VM](https://ticrypt.com/articles/data-ingress#direct-sftp-to-vm).
 
 ## On tiCrypt
 

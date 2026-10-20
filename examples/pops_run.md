@@ -27,7 +27,8 @@ sbatch pops.sbatch
 squeue -u $USER
 ```
 
-If `sbatch` reports `Unspecified error`, submit again.
+If `sbatch` reports `Unspecified error`, this is likely a transient issue: submit the job
+again and check that it prints `Submitted batch job <jobid>`.
 
 The job may show `PENDING (ReqNodeNotAvail)` for 1–2 minutes while its node starts.
 It then runs for about 2 hours (step 2 ~75 min, step 3 ~45 min).

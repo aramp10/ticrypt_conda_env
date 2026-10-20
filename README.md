@@ -77,4 +77,4 @@ conda env remove -n myenv
 ## Examples
 
 - [examples/demo.md](examples/demo.md) — `python=3.12 numpy`
-- [examples/pops.md](examples/pops.md) — `numpy pandas scipy scikit-learn statsmodels`
+- [examples/pops.md](examples/pops.md) — `numpy "pandas<3" scipy scikit-learn statsmodels`

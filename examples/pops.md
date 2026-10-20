@@ -1,29 +1,21 @@
 # Example: a scientific environment (PoPS)
 
-`python=3.12 numpy "pandas<3" scipy scikit-learn statsmodels`
-
-The 2020 PoPS scripts (`pops.feature_selection.py`, `pops.predict_scores.py`) need
-**pandas < 3**. With pandas 3 they fail: `TypeError: read_table() got an unexpected
-keyword argument 'delim_whitespace'`.
+Builds the exact environment tested with the 2020 PoPS scripts (pandas 2.3.3; the
+scripts fail on pandas 3), from the pinned list [pops.explicit.txt](pops.explicit.txt).
 
 ## On BU SCC
 
 ```bash
 module load miniconda/25.3.1
 
+curl -fsSLO https://raw.githubusercontent.com/aramp10/ticrypt_conda_env/main/examples/pops.explicit.txt
+
 conda create -y -n packer conda-pack
 
-conda create -y -n pops python=3.12 numpy "pandas<3" scipy scikit-learn statsmodels
+conda create -y -n pops --file pops.explicit.txt
 
 conda activate packer
 conda-pack -n pops -o pops.tar.gz
-```
-
-To build exactly the versions tested here (pandas 2.3.3), use the pinned list
-[pops.explicit.txt](pops.explicit.txt) instead of the package list:
-
-```bash
-conda create -y -n pops --file pops.explicit.txt
 ```
 
 ## Copy to tiCrypt

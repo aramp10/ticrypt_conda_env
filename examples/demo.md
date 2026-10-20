@@ -17,7 +17,9 @@ conda-pack -n demo -o demo.tar.gz
 
 ## Copy to tiCrypt
 
-See the [tiCrypt file transfer guide](https://github.com/katgit/BU-tiCrypt/tree/main/doc/tiCrypt_FileTransfer_Guide).
+See tiCrypt's [Data Ingress and Egress](https://ticrypt.com/articles/data-ingress) guide
+(see section for [Direct SFTP to VM](https://ticrypt.com/articles/data-ingress#direct-sftp-to-vm)).
+Upload `demo.tar.gz` to `~/Downloads` on the VM.
 
 ## On tiCrypt
 

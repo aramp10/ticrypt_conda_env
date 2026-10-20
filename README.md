@@ -30,10 +30,9 @@ conda-pack -n myenv -o myenv.tar.gz
 
 ## Step 2 — Copy the file into tiCrypt
 
-Follow BU's
-[tiCrypt file transfer guide](https://github.com/katgit/BU-tiCrypt/tree/main/doc/tiCrypt_FileTransfer_Guide).
-For an overview of all upload methods, see tiCrypt's
-[Data ingress](https://ticrypt.com/articles/data-ingress) article.
+See tiCrypt's [Data Ingress and Egress](https://ticrypt.com/articles/data-ingress) guide
+(see section for [Direct SFTP to VM](https://ticrypt.com/articles/data-ingress#direct-sftp-to-vm)).
+Upload `myenv.tar.gz` to `~/Downloads` on the VM.
 
 ## Step 3 — On tiCrypt, unpack the environment
 
@@ -76,5 +75,4 @@ conda env remove -n myenv
 
 ## Examples
 
-- [examples/demo.md](examples/demo.md) — `python=3.12 numpy`
-- [examples/pops.md](examples/pops.md) — PoPS (pinned: numpy, pandas 2.3.3, scipy, scikit-learn, statsmodels)
+See [examples/](examples/README.md).

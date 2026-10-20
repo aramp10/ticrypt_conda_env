@@ -9,6 +9,9 @@ First time using conda on SCC? Set up your `.condarc` first, following
 [Miniconda Modules](https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/)
 (`setup_scc_condarc.sh`).
 
+> **Warning:** without a properly set up `.condarc`, conda stores environments in your
+> SCC home directory (10 GB quota), which a few environments can easily fill.
+
 ```bash
 module load miniconda/25.3.1
 

@@ -38,6 +38,9 @@ All 7 files must print `OK`.
 
 ## Disk space on tiCrypt
 
+Paths on this page use `/drives/drive2/pops` as an example; use the drive and folder on
+your own VM.
+
 You need ~10 GB free on a drive attached to your VM. Check:
 
 ```bash

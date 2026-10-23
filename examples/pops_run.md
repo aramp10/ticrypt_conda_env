@@ -4,6 +4,9 @@ Runs the PoPS test as a SLURM job, using the environment from [pops.md](pops.md)
 data from [pops_data.md](pops_data.md). Heavy work runs on a compute node created for the
 job (8 CPUs, 64 GB), not on your VM.
 
+Paths use `/drives/drive2/pops` as an example, as in [pops_data.md](pops_data.md); use
+your own, and set the same paths in the `# EDIT:` lines of `pops.sbatch`.
+
 ## On BU SCC
 
 Download the job script [pops.sbatch](pops.sbatch):
